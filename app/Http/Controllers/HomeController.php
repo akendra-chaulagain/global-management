@@ -23,11 +23,9 @@ class HomeController extends Controller
         //   return $home_client;
 
 
+       
 
-
-
-        //return $menus;
-        //return $menus->first()->submenus;
+        
         $jobs = Navigation::query()->where('page_type', 'Job')->latest()->paginate(10);
         if (Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%about%")->where('page_type', 'Group')->latest()->first() != null) {
             $about_id = Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%about%")->where('page_type', 'Group')->latest()->first()->id;
@@ -35,6 +33,8 @@ class HomeController extends Controller
         } else {
             $About = null;
         }
+
+
         if (Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%partner%")->where('page_type', 'Group')->latest()->first() != null) {
             $partners_id = Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%partner%")->where('page_type', 'Group')->latest()->first()->id;
             $partners = Navigation::query()->where('parent_page_id', $partners_id)->latest()->get();
@@ -53,9 +53,14 @@ class HomeController extends Controller
         if (Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%testimonial%")->where('page_type', 'Group')->latest()->first() != null) {
             $testimonial_id = Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%testimonial%")->where('page_type', 'Group')->latest()->first()->id;
             $testimonial = Navigation::query()->where('parent_page_id', $testimonial_id)->latest()->first();
+            $testomonial_parent  = Navigation::find($testimonial_id)->childs;
+
         } else {
             $testimonial = null;
         }
+
+
+
         if (Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%banner%")->where('page_type', 'Group')->latest()->first() != null) {
             $banner_id = Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%banner%")->where('page_type', 'Group')->latest()->first()->id;
             $banners = Navigation::query()->where('parent_page_id', $banner_id)->latest()->get();
@@ -133,12 +138,31 @@ class HomeController extends Controller
         } else {
             $process = null;
         }
+
+
+
+
+        if (Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%gallery%")->where('page_type', 'Group')->latest()->first() != null) {
+            $gallery_id = Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%gallery%")->where('page_type', 'Group')->latest()->first()->id;
+            $gallery = Navigation::query()->where('parent_page_id', $gallery_id)->get();
+            $gallery_parent  = Navigation::find($gallery_id)->childs;
+            // return $gallery_parent;
+        } else {
+            $gallery = null;
+        }
+
+       
+
+
+
+
+
         //return $misson;
         $job_categories = Navigation::all()->where('nav_category', 'Main')->where('page_type', 'Group')->where('banner_image', '!=', null);
         // return $job_categories;
         $global_setting = GlobalSetting::all()->first();
         //return $missons;       
-        return view("website.index")->with(['testimonial' => $testimonial, 'statistics' => $statistics, 'partners' => $partners, 'jobs' => $jobs, 'banners' => $banners, 'about' => $About, 'menus' => $menus, 'global_setting' => $global_setting, 'sliders' => $sliders, 'missons' => $missons, 'job_categories' => $job_categories, 'message' => $message, 'process' => $process,  'home_client' => $home_client, "why_us_parent" => $why_us_parent, "why_us_id" => $why_us_id, "message_parent" => $message_parent, "services_parent" => $services_parent, "services" => $services, "services_data"=> $services_data]);
+        return view("website.index")->with(['testimonial' => $testimonial, 'statistics' => $statistics, 'partners' => $partners, 'jobs' => $jobs, 'banners' => $banners, 'about' => $About, 'menus' => $menus, 'global_setting' => $global_setting, 'sliders' => $sliders, 'missons' => $missons, 'job_categories' => $job_categories, 'message' => $message, 'process' => $process,  'home_client' => $home_client, "why_us_parent" => $why_us_parent, "why_us_id" => $why_us_id, "message_parent" => $message_parent, "services_parent" => $services_parent, "services" => $services, "services_data" => $services_data, "testomonial_parent" => $testomonial_parent, "gallery"=> $gallery ]);
     }
 
 

@@ -173,8 +173,8 @@
             </div>
 
             <div class="form-group col-md-12">
-                <label for="icon_image_caption">Icon Text</label>
-                    <input class="form-control" type="text" id="icon_image_caption" name="icon_image_caption" placeholder="Extra Caption" value="">
+                <label for="icon_image_caption">Video Url</label>
+                    <input style="height: 60px" class="form-control" type="text" id="icon_image_caption" name="icon_image_caption" placeholder="Extra Caption" value="">
             </div>
 
             <div class="form-group col-md-12">

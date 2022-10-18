@@ -35,10 +35,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="study-video">
-                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/YbVSHJh3P38"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
+                               {!! $message_parent->icon_image_caption !!}
                             </div>
                         </div>
                     </div>

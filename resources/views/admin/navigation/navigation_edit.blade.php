@@ -245,8 +245,8 @@
             @if(($navigation->parent_page_id) == 26 || ($navigation->id) == 7))
             @else           
             <div class="form-group col-md-12">
-                <label for="icon_image_caption">Icon Text</label>
-                    <input class="form-control" type="text" id="icon_image_caption" name="icon_image_caption" placeholder="Extra Caption" value="{{$navigation->icon_image_caption}}">
+                <label for="icon_image_caption">Video Url</label>
+                    <input style="height: 60px" class="form-control" type="text" id="icon_image_caption" name="icon_image_caption" placeholder="Extra Caption" value="{{$navigation->icon_image_caption}}">
             </div>
             @endif
 
