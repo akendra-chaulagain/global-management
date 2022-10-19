@@ -479,7 +479,7 @@
     <!-----if page_type is Job--------->
     <script>
         function pageType(val){
-           if(val=="Job"){
+           if(val=="Destination"){
                 @if($category_id==0)
                     window.location.href = "/admin/job/{{$main_home}}/create";
                 @elseif($category_id!=0)

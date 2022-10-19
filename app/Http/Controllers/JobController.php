@@ -44,11 +44,11 @@ class JobController extends Controller
             'nav_name' => 'required|min:2',
             'alias' => 'required|unique:navigations',
             'caption' => 'required',
-            'country' => 'required',
-            'company_name' => 'required',
-            'no_of_recruits' => 'required',
-            'no_working_hr' => 'required',
-            'salary' => 'required',
+            // 'country' => 'required',
+            // 'company_name' => 'required',
+            // 'no_of_recruits' => 'required',
+            // 'no_working_hr' => 'required',
+            // 'salary' => 'required',
             'icon_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             'banner_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240'
 
