@@ -17,6 +17,7 @@ class GlobalSetting extends Model
             'address_ne',
     		'page_title',
     		'page_keyword',
+		// 'https://www.instagram.com/'
     		'page_description',
     		'favicon',
     		'site_logo',

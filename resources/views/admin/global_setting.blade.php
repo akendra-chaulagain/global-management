@@ -32,7 +32,7 @@
                 </div>
                 <div class="form-group col-md-12">
                     <label for="site_email">Site Email</label>
-                    <input type="email" id="site_email" name="site_email" class="form-control" placeholder="Site Email"
+                    <input type="text" id="site_email" name="site_email" class="form-control" placeholder="Site Email"
                         value="{{ $global_setting->site_email }}">
                 </div>
                 <div class="form-group col-md-6">
@@ -67,11 +67,33 @@
                         value="{{ $global_setting->twitter }}">
                 </div>
 
+
                 <div class="form-group col-md-6">
                     <label for="LinkedIn">LinkedIn url</label>
                     <input type="text" id="LinkedIn" name="linkedin" class="form-control" placeholder="LinkedIn"
                         value="{{ $global_setting->linkedin }}">
                 </div>
+
+
+                {{-- youtube --}}
+                 <div class="form-group col-md-6">
+                    <label for="LinkedIn">Youtube url</label>
+                    <input type="text" id="LinkedIn" name="youtube" class="form-control" placeholder="LinkedIn"
+                        value="{{ $global_setting->youtube }}">
+                </div>
+
+
+
+{{-- instagram --}}
+ <div class="form-group col-md-6">
+                    <label for="LinkedIn">Instagram url</label>
+                    <input type="text" id="LinkedIn" name="instagram" class="form-control" placeholder="LinkedIn"
+                        value="{{ $global_setting->instagram }}">
+                </div>
+
+
+
+
 
                 <div class="form-group col-md-6">
                     <label for="other">Map Link(Iframe)</label>

@@ -62,11 +62,11 @@
                                     <th>S.NO: #</th>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Number</th>
+                                    {{-- <th>Number</th> --}}
                                     <th>Email</th>
                                     <th>Message</th>
                                     {{-- <th>Resumes</th> --}}
-                                    <th>job title</th>
+                                    {{-- <th>job title</th> --}}
                                     {{-- <th>country</th> --}}
                                     {{-- <th>job detail </th> --}}
                                     <th>Action</th>
@@ -79,11 +79,11 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $contact->id ?? '' }}</td>
                                         <td>{{ $contact->name ?? '' }}</td>
-                                        <td>{{ $contact->number ?? '' }}</td>
+                                        {{-- <td>{{ $contact->number ?? '' }}</td> --}}
                                         <td>{{ $contact->email ?? '' }}</td>
                                         <td>{{ $contact->message ?? '' }}</td>
                                         {{-- <td><a href="{{$contact->file ?? '#'}}"><button type="button" class="btn btn-danger btn-sm">View</button></td> --}}
-                                        <td>{{ $contact->apply_for ?? '' }}</td>
+                                        {{-- <td>{{ $contact->apply_for ?? '' }}</td> --}}
                                         {{-- <td>{{$contact->country ?? ''}}</td> --}}
                                         {{-- <td>{{$contact->job_id}}</td><!----job deytail--> --}}
                                         <td><a href="{{ route('contactDelete', $contact->id) }}"><button type="button"

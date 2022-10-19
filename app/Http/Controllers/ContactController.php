@@ -91,7 +91,7 @@ class ContactController extends Controller
     public function ContactStore(Request $req){
         $validated = $req->validate([
             'name' => 'required',
-            'number' => 'required',
+            // 'number' => 'required',
          ]);
 
          if($req->file('file')){
@@ -106,7 +106,7 @@ class ContactController extends Controller
          //return $req['country'];
         $contact = new Contact;
         $contact->name = $req['name'];
-        $contact->number = $req['number'];
+        // $contact->number = $req['number'];
         $contact->email = $req['email'];
         $contact->file = $name;
         $contact->message = $req['message'];
