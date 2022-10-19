@@ -15,6 +15,8 @@ class HomeController extends Controller
     public function index()
     {
 
+      
+       
         $menus = Navigation::query()->where('nav_category', 'Main')->where('page_type', '!=', 'Job')->where('page_type', '!=', 'Photo Gallery')->where('page_type', '!=', 'Notice')->where('parent_page_id', 0)->where('page_status', '1')->orderBy('position', 'ASC')->get();
 
 
@@ -145,7 +147,9 @@ class HomeController extends Controller
             $gallery_id = Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%gallery%")->where('page_type', 'Group')->latest()->first()->id;
             $gallery = Navigation::query()->where('parent_page_id', $gallery_id)->get();
             $gallery_parent  = Navigation::find($gallery_id)->client_childs;
-            // return $gallery_parent;
+            // return $gallery_parent->first();
+            $photos = NavigationItems::where('navigation_id', $gallery_parent->first()->id)->get();
+            // return $photos;
         } else {
             $gallery = null;
         }
@@ -169,7 +173,7 @@ class HomeController extends Controller
         // return $job_categories;
         $global_setting = GlobalSetting::all()->first();
         //return $missons;       
-        return view("website.index")->with(['testimonial' => $testimonial, 'statistics' => $statistics, 'partners' => $partners, 'jobs' => $jobs, 'banners' => $banners, 'about' => $About, 'menus' => $menus, 'global_setting' => $global_setting, 'sliders' => $sliders, 'missons' => $missons, 'job_categories' => $job_categories, 'message' => $message, 'process' => $process,  'home_client' => $home_client, "why_us_parent" => $why_us_parent, "why_us_id" => $why_us_id, "message_parent" => $message_parent, "services_parent" => $services_parent, "services" => $services, "services_data" => $services_data, "testomonial_parent" => $testomonial_parent, "gallery" => $gallery, "posts_parent" => $posts_parent]);
+        return view("website.index")->with(['testimonial' => $testimonial, 'statistics' => $statistics, 'partners' => $partners, 'jobs' => $jobs, 'banners' => $banners, 'about' => $About, 'menus' => $menus, 'global_setting' => $global_setting, 'sliders' => $sliders, 'missons' => $missons, 'job_categories' => $job_categories, 'message' => $message, 'process' => $process,  'home_client' => $home_client, "why_us_parent" => $why_us_parent, "why_us_id" => $why_us_id, "message_parent" => $message_parent, "services_parent" => $services_parent, "services" => $services, "services_data" => $services_data, "testomonial_parent" => $testomonial_parent, "gallery" => $gallery, "posts_parent" => $posts_parent, "photos"=> $photos]);
     }
 
 
@@ -454,8 +458,15 @@ class HomeController extends Controller
             $partners = null;
         }
         $global_setting = GlobalSetting::all()->first();
+
+
+
+        $normal = Navigation::where('nav_name', $slug)->first();
+        // return $normal;
+
+
         $menus = Navigation::query()->where('nav_category', 'Main')->where('page_type', '!=', 'Job')->where('page_type', '!=', 'Photo Gallery')->where('page_type', '!=', 'Notice')->where('parent_page_id', 0)->where('page_status', '1')->orderBy('position', 'ASC')->get();
-        return view("website.job_detail_single_page")->with(["partners" => $partners, 'job' => $job, 'menus' => $menus, 'global_setting' => $global_setting]);
+        return view("website.normal")->with(["partners" => $partners, 'job' => $job, 'menus' => $menus, 'global_setting' => $global_setting, "normal"=> $normal]);
     }
 
 

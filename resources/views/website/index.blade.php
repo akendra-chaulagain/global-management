@@ -6,6 +6,8 @@
 @section('content')
     @include('website.main_slider')
     @include('website.home_about_company')
+    @include('website.home_destination')
+
     @include('website.why-choose')
     @include('website.why_study_abroad')
     @include('website.services')

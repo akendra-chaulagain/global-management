@@ -1,4 +1,11 @@
 @php
+  $course_home = App\Models\Navigation::find(2547)->client_childs;
+  $course_child = App\Models\Navigation::find(2546)->courses_childs->take(4);
+
+
+
+
+
     $global_setting = app\Models\GlobalSetting::all()->first();
     $normal_gallary_notice = app\Models\Navigation::query()
         ->where('nav_category', 'Main')
@@ -73,7 +80,7 @@
     <div class="hearder">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="index.html"><img
+                <a class="navbar-brand" href="/"><img
                         src="{{ '/uploads/icons/' . $global_setting->site_logo }}" alt="lgog"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -86,24 +93,14 @@
                             <a class="nav-link" aria-current="page" href="/">HOME</a>
                         </li>
 
-                        {{-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                DESTINATION
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="japan.html">JAPAN</a></li>
-                                <li><a class="dropdown-item" href="australia.html">AUSTRALIA</a></li>
-                                <li><a class="dropdown-item" href="australia.html">UNITED KINGDOM</a></li>
-                            </ul>
-                        </li> --}}
-
+                    
                         @foreach ($menus as $menu)
                             @php $submenus = $menu->childs; @endphp
                             <li class="nav-item dropdown" @if (isset($slug_detail) && $slug_detail->nav_name == $menu->nav_name)  @endif>
-                                {{-- <a href="product-list.html">Our Products<i
-                                                    class="fa fa-angle-down"></i></a> --}}
-                                <a class="nav-link dropdown-toggle" role="button" aria-expanded="false"
+
+                                <a class="nav-link @if($menu->nav_name == "destination")dropdown-toggle @endif"
+                                    @if ($menu->nav_name == 'destination') data-bs-toggle="dropdown" @endif
+                                    aria-expanded="false"
                                     @if ($submenus->count() > 0) href="{{ route('category', $menu->nav_name) }}" @else href="  
                                                     {{ route('category', $menu->nav_name) }}" @endif>{{ $menu->caption }}</a>
 
@@ -144,14 +141,14 @@
 
 
 
-       <footer>
+    <footer>
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
                     <div class="footer-content">
                         <h1>About Us</h1>
                         <ul>
-                            <li><a href="about.html">About Us?</a> </li>
+                            <li><a href="/about-us">About Us</a> </li>
                             <li><a href="#">Careers</a></li>
                             <li><a href="process.html">Our Process</a></li>
                             <li><a href="#">Terms & Conditions</a></li>
@@ -175,9 +172,11 @@
 
                         <h1>Destinations</h1>
                         <ul>
-                            <li><a href="japan.html">Japan</a></li>
-                            <li><a href="australia.html">Australia</a></li>
-                            <li><a href="australia.html">United Kingdom</a></li>
+                            @foreach ($course_home as $course_home_item)
+                            <li><a href="/destination/{{ $course_home_item->nav_name }}">{{ $course_home_item->caption }}</a></li>
+                                
+                            @endforeach
+                            
                         </ul>
                     </div>
                 </div>
@@ -186,26 +185,33 @@
 
                         <h1>Our Course</h1>
                         <ul>
-                            <li><a href="course.html">NAT</a></li>
-                            <li><a href="course.html">JLPT</a></li>
-                            <li><a href="course.html">IELTS</a></li>
-                            <li><a href="course.html">GRE</a></li>
-                            <li><a href="course.html">TOEFL</a></li>
+                            @foreach ($course_child as $course_child_item)
+                            <li><a href="/courses">{{ $course_child_item->caption }}</a></li>
+                                
+                            @endforeach
+                           
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="icon-area">
                 <h1 class="text-center">Global Management Foundation</h1>
-                <h2 class="text-center">© <script>
-                            document.write(new Date().getFullYear())
-                        </script> All rights reserved.</h2>
+                <h2 class="text-center">©
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> All rights reserved.
+                </h2>
                 <div class="icon text-center">
-                    <a href="{{ $global_setting->facebook ?? '#' }}" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="{{ $global_setting->twitter ?? '#' }}" target="_blank"><i class="fa-brands fa-square-twitter"></i></a>
-                    <a href="{{ $global_setting->instagram ?? '#' }}" target="_blank"><i class="fa-brands fa-square-instagram"></i></a>
-                    <a href="{{ $global_setting->youtube ?? '#' }}" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="{{ $global_setting->linkedin ?? '#' }}" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="{{ $global_setting->facebook ?? '#' }}" target="_blank"><i
+                            class="fa-brands fa-facebook"></i></a>
+                    <a href="{{ $global_setting->twitter ?? '#' }}" target="_blank"><i
+                            class="fa-brands fa-square-twitter"></i></a>
+                    <a href="{{ $global_setting->instagram ?? '#' }}" target="_blank"><i
+                            class="fa-brands fa-square-instagram"></i></a>
+                    <a href="{{ $global_setting->youtube ?? '#' }}" target="_blank"><i
+                            class="fa-brands fa-youtube"></i></a>
+                    <a href="{{ $global_setting->linkedin ?? '#' }}" target="_blank"><i
+                            class="fa-brands fa-linkedin"></i></a>
                 </div>
             </div>
         </div>

@@ -5,12 +5,12 @@
              <div class="col-md-4">
                <div class="posts">
                    <div class="img-box">
-                       <a href="news-detail.html">
+                       <a href="/detail/{{ $posts_parent_item->nav_name }}">
                            <img src="{{ $posts_parent_item->banner_image }}" alt="">
                            <span class="et_overlay"></span>
                        </a>
                    </div>
-                   <a href="news-detail.html">
+                   <a href="/detail/{{  $posts_parent_item->nav_name }}">
                        <h5>{{ $posts_parent_item->caption }}</h5>
                    </a>
                </div>
