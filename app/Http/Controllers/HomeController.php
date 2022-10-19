@@ -53,7 +53,7 @@ class HomeController extends Controller
         if (Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%testimonial%")->where('page_type', 'Group')->latest()->first() != null) {
             $testimonial_id = Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%testimonial%")->where('page_type', 'Group')->latest()->first()->id;
             $testimonial = Navigation::query()->where('parent_page_id', $testimonial_id)->latest()->first();
-            $testomonial_parent  = Navigation::find($testimonial_id)->childs;
+            $testomonial_parent  = Navigation::find($testimonial_id)->client_childs;
         } else {
             $testimonial = null;
         }
@@ -111,7 +111,7 @@ class HomeController extends Controller
             $services_id = Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%our-services%")->where('page_type', 'Group')->latest()->first()->id;
             $services = Navigation::query()->where('parent_page_id', $services_id)->take(1);
             $services_parent = Navigation::find($services_id);
-            $services_data = $services_parent->childs->take(6);
+            $services_data = $services_parent->client_childs->take(6);
             // return $services_data;
         } else {
             $message = null;
@@ -144,7 +144,7 @@ class HomeController extends Controller
         if (Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%gallery%")->where('page_type', 'Group')->latest()->first() != null) {
             $gallery_id = Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%gallery%")->where('page_type', 'Group')->latest()->first()->id;
             $gallery = Navigation::query()->where('parent_page_id', $gallery_id)->get();
-            $gallery_parent  = Navigation::find($gallery_id)->childs;
+            $gallery_parent  = Navigation::find($gallery_id)->client_childs;
             // return $gallery_parent;
         } else {
             $gallery = null;
@@ -156,7 +156,7 @@ class HomeController extends Controller
         if (Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%posts%")->where('page_type', 'Group')->latest()->first() != null) {
             $post_id = Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%posts%")->where('page_type', 'Group')->latest()->first()->id;
             $posts = Navigation::query()->where('parent_page_id', $post_id)->get();
-            $posts_parent  = Navigation::find($post_id)->childs;
+            $posts_parent  = Navigation::find($post_id)->client_childs;
             // return $posts_parent;
         } else {
             $posts = null;
@@ -296,6 +296,16 @@ class HomeController extends Controller
 
 
             return view("website.clients")->with(['message' => $message, 'client' => $client, 'jobs' => $jobs, 'menus' => $menus, 'sliders' => $sliders, 'about' => $About, 'global_setting' => $global_setting, 'slug_detail' => $slug_detail, "client_breed" => $client_breed]);
+
+        } elseif ($category_type == "Process") {
+
+            $process = Navigation::find($category_id);
+            $process_breed = $process->client_childs;
+
+            // return $process_breed;
+
+
+            return view("website.process")->with(['message' => $message, 'process' => $process, 'jobs' => $jobs, 'menus' => $menus, 'sliders' => $sliders, 'about' => $About, 'global_setting' => $global_setting, 'slug_detail' => $slug_detail, "process_breed" => $process_breed]);
         } else {
 
             return redirect('/');
@@ -419,14 +429,12 @@ class HomeController extends Controller
         } elseif ($subcategory_type == "Normal") {
             $normal = Navigation::find($subcategory_id);
             return view("website.normal")->with(["partners" => $partners, 'message' => $message, 'normal' => $normal, 'jobs' => $jobs, 'menus' => $menus, 'sliders' => $sliders, 'about' => $About, 'global_setting' => $global_setting, 'slug_detail' => $slug_detail]);
-
-
         } elseif ($subcategory_type == "Group") {
             $japan_parent = Navigation::find($subcategory_id);
             $japan_parent_childs = $japan_parent->childs;
             // $japan_data =Navigation::find(2556)->client_childs;
             // return $japan_data;
-            return view("website.japan")->with(["partners" => $partners, 'jobs' => $jobs, 'menus' => $menus, 'sliders' => $sliders, 'about' => $About, 'global_setting' => $global_setting, 'slug_detail' => $slug_detail, "japan_parent"=> $japan_parent, "japan_parent_childs"=> $japan_parent_childs]);
+            return view("website.japan")->with(["partners" => $partners, 'jobs' => $jobs, 'menus' => $menus, 'sliders' => $sliders, 'about' => $About, 'global_setting' => $global_setting, 'slug_detail' => $slug_detail, "japan_parent" => $japan_parent, "japan_parent_childs" => $japan_parent_childs]);
         } else {
             return redirect("/");
         }

@@ -17,7 +17,7 @@
     @foreach ($japan_parent_childs as $japan_parent_child)
         <div class="japan">
             <div class="container">
-                <h1 class="text-center">{!! $japan_parent_child->id !!}</h1>
+                <h1 class="text-center">{!! $japan_parent_child->short_content !!}</h1>
 
                 <div class="city-box">
                     <div class="row">

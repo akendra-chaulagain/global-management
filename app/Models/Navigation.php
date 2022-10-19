@@ -45,12 +45,19 @@ class Navigation extends Model
 
     public function childs()
     {
-        return $this->hasMany('App\Models\Navigation','parent_page_id','id')->where('page_type', '!=', 'Client')->where('page_type', '!=', 'Courses')->where('page_type', '!=', 'Normal')->where('page_status','1')->orderBy('position','ASC');
+        return $this->hasMany('App\Models\Navigation','parent_page_id','id')->where('page_type', '!=', 'Client')->where('page_type', '!=', 'Courses')->where('page_type', '!=', 'Process')->where('page_type', '!=', 'Normal')->where('page_status','1')->orderBy('position','ASC');
     }
     public function client_childs()
     {
         return $this->hasMany('App\Models\Navigation', 'parent_page_id', 'id')->where('page_type', '!=', 'Client')->where('page_type', '!=', 'Courses')->where('page_status', '1')->orderBy('position', 'ASC');
     }
+
+    public function courses_childs()
+    {
+        return $this->hasMany('App\Models\Navigation', 'parent_page_id', 'id')->where('page_type', '!=', 'Client')->where('page_status', '1')->orderBy('position', 'ASC');
+    }
+
+
 
     public function parents()
     {

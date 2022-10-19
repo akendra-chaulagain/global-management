@@ -23,7 +23,7 @@
     <section class="course-area">
         <div class="container">
             <div class="row">
-                @foreach ($courses->client_childs as $courses_item)
+                @foreach ($courses->courses_childs as $courses_item)
                      <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="course-box wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
                         <figure><img src="{{ $courses_item->banner_image }}" alt="course"></figure>
