@@ -10,8 +10,8 @@
             <div class="col-md-4">
                 <div class="choose-content wow fadeInUp"data-wow-duration="1s" data-wow-delay="1s">
                     <img src="{{ $why_us_id_item->banner_image }}" alt="">
-                    <h4>Quality Consistency</h4>
-                    <h5>Trusted Over Time</h5>
+                    <h4>{{ $why_us_id_item->caption }}</h4>
+                    <h5>{!! $why_us_id_item->short_content !!}</h5>
                 </div>
             </div>
            
