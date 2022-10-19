@@ -102,7 +102,7 @@ class HomeController extends Controller
             $message_id = Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%message%")->where('page_type', 'Group')->latest()->first()->id;
             $message = Navigation::query()->where('parent_page_id', $message_id)->latest();
             $message_parent = Navigation::find($message_id);
-            //    return $message_parent;
+            //    return $message_parent->chil;
         } else {
             $message = null;
         }

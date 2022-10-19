@@ -43,7 +43,7 @@
                 <div class="couter-content" id="counter">
                     <div class="container">
                         <div class="row">
-                            @foreach ($message_parent->childs as $message_parent_item)
+                            @foreach ($message_parent->client_childs as $message_parent_item)
                                   <div class="col-lg-3 col-md-3 col-12">
                                 <div class="counter">
                                     <h1 class="counter" data-TargetNum="{{ $message_parent_item->caption }}" data-Speed="1000">0</h1>
