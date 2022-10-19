@@ -83,12 +83,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="about.html">ABOUT</a>
+                            <a class="nav-link" aria-current="page" href="/">HOME</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="course.html">COURSES</a>
-                        </li>
-                        <li class="nav-item dropdown">
+
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 DESTINATION
@@ -98,13 +96,37 @@
                                 <li><a class="dropdown-item" href="australia.html">AUSTRALIA</a></li>
                                 <li><a class="dropdown-item" href="australia.html">UNITED KINGDOM</a></li>
                             </ul>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="process.html">OUR PROCESS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="contact.html">CONTACT</a>
-                        </li>
-                        </li>
+                        </li> --}}
+
+                        @foreach ($menus as $menu)
+                            @php $submenus = $menu->childs; @endphp
+                            <li class="nav-item dropdown" @if (isset($slug_detail) && $slug_detail->nav_name == $menu->nav_name)  @endif>
+                                {{-- <a href="product-list.html">Our Products<i
+                                                    class="fa fa-angle-down"></i></a> --}}
+                                <a class="nav-link dropdown-toggle" role="button" 
+                                    aria-expanded="false"
+                                    @if ($submenus->count() > 0) href="{{ route('category', $menu->nav_name) }}" @else href="  
+                                                    {{ route('category', $menu->nav_name) }}" @endif>{{ $menu->caption }}</a>
+
+
+
+
+                                @if ($submenus->count() > 0)
+                                    <ul class="dropdown-menu">
+                                        @foreach ($submenus as $sub)
+                                            <li>
+
+                                                <a class="dropdown-item"
+                                                    href="{{ route('subcategory', [$menu->nav_name, $sub->nav_name]) }}">{{ $sub->caption }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </li>
+                        @endforeach
+
+
+
                     </ul>
 
                 </div>

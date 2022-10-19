@@ -151,9 +151,17 @@ class HomeController extends Controller
             $gallery = null;
         }
 
-       
 
 
+
+        if (Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%posts%")->where('page_type', 'Group')->latest()->first() != null) {
+            $post_id = Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%posts%")->where('page_type', 'Group')->latest()->first()->id;
+            $posts = Navigation::query()->where('parent_page_id', $post_id)->get();
+            $posts_parent  = Navigation::find($post_id)->childs;
+            // return $posts_parent;
+        } else {
+            $posts = null;
+        }
 
 
 
@@ -162,7 +170,7 @@ class HomeController extends Controller
         // return $job_categories;
         $global_setting = GlobalSetting::all()->first();
         //return $missons;       
-        return view("website.index")->with(['testimonial' => $testimonial, 'statistics' => $statistics, 'partners' => $partners, 'jobs' => $jobs, 'banners' => $banners, 'about' => $About, 'menus' => $menus, 'global_setting' => $global_setting, 'sliders' => $sliders, 'missons' => $missons, 'job_categories' => $job_categories, 'message' => $message, 'process' => $process,  'home_client' => $home_client, "why_us_parent" => $why_us_parent, "why_us_id" => $why_us_id, "message_parent" => $message_parent, "services_parent" => $services_parent, "services" => $services, "services_data" => $services_data, "testomonial_parent" => $testomonial_parent, "gallery"=> $gallery ]);
+        return view("website.index")->with(['testimonial' => $testimonial, 'statistics' => $statistics, 'partners' => $partners, 'jobs' => $jobs, 'banners' => $banners, 'about' => $About, 'menus' => $menus, 'global_setting' => $global_setting, 'sliders' => $sliders, 'missons' => $missons, 'job_categories' => $job_categories, 'message' => $message, 'process' => $process,  'home_client' => $home_client, "why_us_parent" => $why_us_parent, "why_us_id" => $why_us_id, "message_parent" => $message_parent, "services_parent" => $services_parent, "services" => $services, "services_data" => $services_data, "testomonial_parent" => $testomonial_parent, "gallery"=> $gallery , "posts_parent"=> $posts_parent]);
     }
 
 
@@ -268,15 +276,33 @@ class HomeController extends Controller
             //return $notice_heading;
             return view("website.notice")->with(['notice_heading' => $notice_heading, 'notices' => $notices, 'jobs' => $jobs, 'menus' => $menus, 'sliders' => $sliders, 'about' => $About, 'global_setting' => $global_setting, 'slug_detail' => $slug_detail]);
         } elseif ($category_type == "Normal") {
-            //return $category_id;
+            // return $category_id;
             $normal = Navigation::find($category_id);
+            // $message_md = Navigation::find($category_id);
+            // return $normal;
+
 
             return view("website.normal")->with(['message' => $message, 'normal' => $normal, 'jobs' => $jobs, 'menus' => $menus, 'sliders' => $sliders, 'about' => $About, 'global_setting' => $global_setting, 'slug_detail' => $slug_detail]);
-        } elseif ($category_type == "client") {
-            // return $category_id;
+
+            
+        }    elseif ($category_type == "Courses") {
+            //return $category_id;
+            $courses = Navigation::find($category_id);
+          
+
+
+            return view("website.courses")->with(['message' => $message, 'courses' => $courses, 'jobs' => $jobs, 'menus' => $menus, 'sliders' => $sliders, 'about' => $About, 'global_setting' => $global_setting, 'slug_detail' => $slug_detail]);
+
+            
+        }
+        
+        
+        
+        elseif ($category_type == "client") {
+          
             $client = Navigation::find($category_id);
             $client_breed = $client->client_childs;
-            // return $client_breed;
+         
 
             return view("website.clients")->with(['message' => $message, 'client' => $client, 'jobs' => $jobs, 'menus' => $menus, 'sliders' => $sliders, 'about' => $About, 'global_setting' => $global_setting, 'slug_detail' => $slug_detail, "client_breed" => $client_breed]);
         } else {

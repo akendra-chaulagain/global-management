@@ -10,5 +10,7 @@
     @include('website.why_study_abroad')
     @include('website.services')
     @include('website.testomonials')
+    @include('website.home_posts')
     @include('website.home_gallery')
+    
 @endsection
