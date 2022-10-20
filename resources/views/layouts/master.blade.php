@@ -248,7 +248,7 @@
 
     {{-- translate language --}}
 
-    <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
 
 
     <script>
