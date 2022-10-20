@@ -1,11 +1,7 @@
 @php
-  $course_home = App\Models\Navigation::find(2547)->client_childs;
-  $course_child = App\Models\Navigation::find(2546)->courses_childs->take(4);
-
-
-
-
-
+    $course_home = App\Models\Navigation::find(2547)->client_childs;
+    $course_child = App\Models\Navigation::find(2546)->courses_childs->take(4);
+    
     $global_setting = app\Models\GlobalSetting::all()->first();
     $normal_gallary_notice = app\Models\Navigation::query()
         ->where('nav_category', 'Main')
@@ -80,8 +76,8 @@
     <div class="hearder">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="/"><img
-                        src="{{ '/uploads/icons/' . $global_setting->site_logo }}" alt="lgog"></a>
+                <a class="navbar-brand" href="/"><img src="{{ '/uploads/icons/' . $global_setting->site_logo }}"
+                        alt="lgog"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -93,12 +89,12 @@
                             <a class="nav-link" aria-current="page" href="/">HOME</a>
                         </li>
 
-                    
+
                         @foreach ($menus as $menu)
                             @php $submenus = $menu->childs; @endphp
                             <li class="nav-item dropdown" @if (isset($slug_detail) && $slug_detail->nav_name == $menu->nav_name)  @endif>
 
-                                <a class="nav-link @if($menu->nav_name == "destination")dropdown-toggle @endif"
+                                <a class="nav-link @if ($menu->nav_name == 'destination') dropdown-toggle @endif"
                                     @if ($menu->nav_name == 'destination') data-bs-toggle="dropdown" @endif
                                     aria-expanded="false"
                                     @if ($submenus->count() > 0) href="{{ route('category', $menu->nav_name) }}" @else href="  
@@ -129,10 +125,10 @@
 
                 </div>
                 <form action="" class="language-picker__form">
-                    <select name="language-picker-select" id="language-picker-select">
-                        <option class="english" lang="en" value="english" selected>English</option>
-                        <option class="japanese" lang="de" value="japanese">Japanese</option>
-                    </select>
+                    <div name="language-picker-select" id="google_element">
+                        {{-- <option class="english" lang="en" value="english" selected>English</option>
+                        <option class="japanese" lang="de" value="japanese">Japanese</option> --}}
+                    </div>
                 </form>
             </div>
         </nav>
@@ -173,10 +169,11 @@
                         <h1>Destinations</h1>
                         <ul>
                             @foreach ($course_home as $course_home_item)
-                            <li><a href="/destination/{{ $course_home_item->nav_name }}">{{ $course_home_item->caption }}</a></li>
-                                
+                                <li><a
+                                        href="/destination/{{ $course_home_item->nav_name }}">{{ $course_home_item->caption }}</a>
+                                </li>
                             @endforeach
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -186,10 +183,9 @@
                         <h1>Our Course</h1>
                         <ul>
                             @foreach ($course_child as $course_child_item)
-                            <li><a href="/courses">{{ $course_child_item->caption }}</a></li>
-                                
+                                <li><a href="/courses">{{ $course_child_item->caption }}</a></li>
                             @endforeach
-                           
+
                         </ul>
                     </div>
                 </div>
@@ -250,7 +246,18 @@
         wow.init();
     </script>
 
+    {{-- translate language --}}
 
+    <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+
+
+    <script>
+        function loadGoogleTranslate() {
+            new google.translate.TranslateElement({
+                includedLanguages: 'en,ja'
+            }, "google_element")
+        }
+    </script>
 
 
 

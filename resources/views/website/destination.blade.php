@@ -32,19 +32,19 @@
                          {!! $course_data->getJob->no_of_recruits !!}
                     </div>
                 </div>
-                <div id="living" class="tabcontent">
+                <div id="requirment" class="tabcontent">
                     <div class="destination">
                          {!! $course_data->getJob->no_working_hr !!}
                         
                     </div>
                 </div>
-                <div id="cousrse" class="tabcontent">
+                <div id="living" class="tabcontent">
                     <div class="destination">
                          {!! $course_data->getJob->country !!}
                         
                     </div>
                 </div>
-                <div id="institute" class="tabcontent">
+                <div id="cousrse" class="tabcontent">
                     <div class="destination">
                          {!! $course_data->getJob->contract_time !!}
                         
@@ -60,17 +60,4 @@
         </div>
     </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
- 
 @endsection

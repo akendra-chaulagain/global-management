@@ -1537,3 +1537,32 @@ textarea.form-control{
     font-weight: 400;
     padding-bottom: 10px;
 }
+
+
+.goog-te-gadget img{
+    display: none;
+}
+
+.goog-logo-link, .goog-logo-link:link, .goog-logo-link:visited, .goog-logo-link:hover, .goog-logo-link:active {
+    font-size: 12px;
+    font-weight: bold;
+    color: #444;
+    text-decoration: none;
+    display: none;
+}
+
+.language-picker__form select {
+    border: 1px solid #ccc;
+    color: #666;
+    padding: 6px 22px;
+    width: 151px;
+}
+
+
+.language-picker__form {
+    position: absolute;
+    top: -10px;
+    right: 0;
+    max-height: 36px;
+    overflow: hidden;
+}
